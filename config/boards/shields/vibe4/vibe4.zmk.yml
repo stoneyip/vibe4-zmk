@@ -1,0 +1,8 @@
+file_format: "1"
+id: vibe4
+name: Vibe4 Macropad
+type: shield
+url: https://zmk.dev/
+requires: [pro_micro]
+features:
+  - keys

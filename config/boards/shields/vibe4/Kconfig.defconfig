@@ -1,0 +1,6 @@
+if SHIELD_VIBE4
+
+config ZMK_KEYBOARD_NAME
+	default "Vibe4"
+
+endif
