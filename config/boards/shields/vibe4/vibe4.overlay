@@ -1,4 +1,5 @@
 #include <dt-bindings/zmk/matrix_transform.h>
+#include <zephyr/dt-bindings/gpio/gpio.h>
 
 / {
 	chosen {
@@ -8,13 +9,15 @@
 
 	kscan0: kscan {
 		compatible = "zmk,kscan-gpio-direct";
-		input-gpios
-			= <&pro_micro 18 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-			, <&pro_micro 19 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-			, <&pro_micro 20 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-			, <&pro_micro 21 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-			;
 		wakeup-source;
+		debounce-press-ms = <5>;
+		debounce-release-ms = <5>;
+		input-gpios
+			= <&gpio0 31 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* K1 -> D18 / P0.31 */
+			, <&gpio0 29 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* K2 -> D19 / P0.29 */
+			, <&gpio0  2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* K3 -> D20 / P0.02 */
+			, <&gpio1 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* K4 -> D21 / P1.15 */
+			;
 	};
 
 	default_transform: keymap_transform_0 {

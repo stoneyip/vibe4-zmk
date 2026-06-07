@@ -2,14 +2,33 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
+#define BASE 0
+#define FN   1
+
 / {
+	combos {
+		compatible = "zmk,combos";
+		/* Hold K1 + K4 together for ~50ms to wipe ALL Bluetooth bonds.
+		   Useful when macOS got confused about an old pairing. */
+		combo_btclr_all {
+			timeout-ms = <50>;
+			key-positions = <0 3>;
+			bindings = <&bt BT_CLR_ALL>;
+		};
+	};
+
 	keymap {
 		compatible = "zmk,keymap";
 
 		default_layer {
-			label = "BASE";
 			bindings = <
-				&kp F19   &kp LC(C)   &kp LG(K)   &kp LG(ENTER)
+				&mo FN     &kp LC(C)   &kp LG(K)   &kp LG(ENTER)
+			>;
+		};
+
+		fn_layer {
+			bindings = <
+				&trans     &bt BT_CLR  &bt BT_NXT  &bt BT_SEL 0
 			>;
 		};
 	};
