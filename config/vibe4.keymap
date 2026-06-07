@@ -6,9 +6,21 @@
 #define FN   1
 
 / {
+	behaviors {
+		/* tap = macOS Fn (Globe / Dictation), hold = momentary FN layer */
+		ht_fn: hold_tap_fn {
+			compatible = "zmk,behavior-hold-tap";
+			#binding-cells = <2>;
+			tapping-term-ms = <200>;
+			quick-tap-ms = <0>;
+			flavor = "tap-preferred";
+			bindings = <&mo>, <&kp>;
+		};
+	};
+
 	combos {
 		compatible = "zmk,combos";
-		/* K1 + K4 同时按 ~50ms = 清掉当前 profile 的配对（救急用） */
+		/* In FN layer: K1 + K4 together => clear current BT pairing */
 		combo_btclr {
 			timeout-ms = <50>;
 			key-positions = <0 3>;
@@ -22,13 +34,13 @@
 
 		default_layer {
 			bindings = <
-				&mo FN     &kp N2     &kp N3     &kp N4
+				&ht_fn FN GLOBE   &kp LG(Z)   &kp DOWN   &kp ENTER
 			>;
 		};
 
 		fn_layer {
 			bindings = <
-				&trans     &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_NXT
+				&trans            &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_NXT
 			>;
 		};
 	};
