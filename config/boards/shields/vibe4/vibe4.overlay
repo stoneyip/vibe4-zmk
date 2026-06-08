@@ -17,15 +17,16 @@
 			, <&gpio0 29 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* K2 -> D19 / P0.29 */
 			, <&gpio0  2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* K3 -> D20 / P0.02 */
 			, <&gpio1 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* K4 -> D21 / P1.15 */
+			, <&gpio1 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* K5 ->        P1.13 */
 			;
 	};
 
 	default_transform: keymap_transform_0 {
 		compatible = "zmk,matrix-transform";
-		columns = <4>;
+		columns = <5>;
 		rows = <1>;
 		map = <
-			RC(0,0) RC(0,1) RC(0,2) RC(0,3)
+			RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4)
 		>;
 	};
 };

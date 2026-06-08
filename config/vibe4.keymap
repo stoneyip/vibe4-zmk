@@ -7,7 +7,7 @@
 
 / {
 	behaviors {
-		/* tap = macOS Fn (Globe / Dictation), hold = momentary FN layer */
+		/* tap = macOS Globe (语音/听写)，hold = 进入 FN 层 */
 		ht_fn: hold_tap_fn {
 			compatible = "zmk,behavior-hold-tap";
 			#binding-cells = <2>;
@@ -18,29 +18,18 @@
 		};
 	};
 
-	combos {
-		compatible = "zmk,combos";
-		/* In FN layer: K1 + K4 together => clear current BT pairing */
-		combo_btclr {
-			timeout-ms = <50>;
-			key-positions = <0 3>;
-			bindings = <&bt BT_CLR>;
-			layers = <FN>;
-		};
-	};
-
 	keymap {
 		compatible = "zmk,keymap";
 
 		default_layer {
 			bindings = <
-				&ht_fn FN GLOBE   &kp LG(Z)   &kp DOWN   &kp ENTER
+				&ht_fn FN GLOBE   &kp ENTER   &kp DOWN   &kp LG(Z)   &kp ESC
 			>;
 		};
 
 		fn_layer {
 			bindings = <
-				&trans            &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_NXT
+				&trans            &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_NXT   &bt BT_CLR
 			>;
 		};
 	};
