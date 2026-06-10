@@ -7,11 +7,11 @@
 
 / {
 	behaviors {
-		/* tap = macOS Globe (语音/听写)，hold = 进入 FN 层 */
+		/* K5: tap = Esc, hold(>=500ms) = momentary FN layer */
 		ht_fn: hold_tap_fn {
 			compatible = "zmk,behavior-hold-tap";
 			#binding-cells = <2>;
-			tapping-term-ms = <200>;
+			tapping-term-ms = <500>;
 			quick-tap-ms = <0>;
 			flavor = "tap-preferred";
 			bindings = <&mo>, <&kp>;
@@ -23,13 +23,13 @@
 
 		default_layer {
 			bindings = <
-				&ht_fn FN GLOBE   &kp ENTER   &kp DOWN   &kp LG(Z)   &kp ESC
+				&kp GLOBE   &kp ENTER   &kp DOWN   &kp LG(Z)   &ht_fn FN ESC
 			>;
 		};
 
 		fn_layer {
 			bindings = <
-				&trans            &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_NXT   &bt BT_CLR
+				&bt BT_SEL 0   &bt BT_SEL 1   &bt BT_NXT   &bt BT_CLR   &trans
 			>;
 		};
 	};
